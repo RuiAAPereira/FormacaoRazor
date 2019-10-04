@@ -1,0 +1,87 @@
+﻿@page
+@model FormacaoRazor.Pages.FormacoesPages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card card-orange">
+            <div class="card-header">
+                <h3 class="card-title">Detalhe:</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.FormacaoNome)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.FormacaoNome)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.FormacaoCod)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.FormacaoCod)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.FormacaoValidade)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.FormacaoValidade) Anos(s)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.FormacaoDuracao)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.FormacaoDuracao) Dia(s)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.FormacaoColor)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <span><i class="fas fa-square" style="color: @Model.Formacao.FormacaoColor"></i></span>
+                        @Html.DisplayFor(model => model.Formacao.FormacaoColor)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.CreatedAt)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.CreatedAt)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.CreatedBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.CreatedBy)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.LastUpdatedAt)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.LastUpdatedAt)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Formacao.LastUpdatedBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Formacao.LastUpdatedBy)
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                <a asp-page="./Edit" asp-route-id="@Model.Formacao.FormacaoId" class="btn btn-primary">Editar</a>
+                &nbsp;|&nbsp;<a asp-page="Index" class="btn btn-default">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>

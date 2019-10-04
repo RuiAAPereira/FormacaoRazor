@@ -1,0 +1,92 @@
+﻿[
+  {
+    "FuncaoId": "c4e8e4a9-e6c0-4298-8c05-d88bfdc83b8c",
+    "FuncaoNome": "COORDENADOR",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "79238b38-4ea8-4d3d-9358-b28d13ab5008",
+    "FuncaoNome": "ASSISTENTE ADMINISTRATIVA",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "78c4e1bd-9b1b-4ff3-91d4-94e2139ff569",
+    "FuncaoNome": "SUPERVISOR MYWAY",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "a2e3aba8-4b04-41da-a585-5d48ae03c066",
+    "FuncaoNome": "ALOCADOR MYWAY",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "e8b0d9fc-65ac-4614-beed-7a62d983d8c8",
+    "FuncaoNome": "ASSISTENTE PMR",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "ee0cea92-ffd6-4168-8b17-8f2f3207b618",
+    "FuncaoNome": "ASSISTENTE PMR PART-TIME",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "d0e3ba3d-aa62-48a5-9050-786b00950479",
+    "FuncaoNome": "MOTORISTA MYWAY",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "5454ff34-6fd6-4ef6-b21f-ed52b2f20599",
+    "FuncaoNome": "MOTORISTA AMBULIFT",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "d27cf5ef-dd00-4500-acff-0d284b010400",
+    "FuncaoNome": "PLANEAMENTO",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "549936c3-26f2-45ff-971b-e1fa4d493e26",
+    "FuncaoNome": "QUALIDADE",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "fd00f2ea-8f25-4fff-be66-0cb0f5b7aeb7",
+    "FuncaoNome": "COORDENAÇÃO OPS",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "165c7875-bc22-4497-8314-74d45ad99bb3",
+    "FuncaoNome": "LOAD CONTROL",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "dd6d7f1a-dfa4-46d5-9735-7f30307de8bb",
+    "FuncaoNome": "DISPATCHER",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "b33efecd-cc02-42e4-ae45-23061d46901c",
+    "FuncaoNome": "COORDENAÇÃO LOAD CONTROL",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "FuncaoId": "7ac27970-8e3e-4ee3-8f07-33467953d9ab",
+    "FuncaoNome": "ADMINISTRATIVO OPS",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  }
+]

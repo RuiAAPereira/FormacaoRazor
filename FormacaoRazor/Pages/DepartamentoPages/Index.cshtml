@@ -1,0 +1,98 @@
+﻿@page
+@model FormacaoRazor.Pages.DepartamentoPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-app" asp-page="Create">
+                    <i class="fas fa-plus-square"></i> Novo
+                </a>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Fechar">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remover">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamentos[0].DepartamentoNumero)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamentos[0].DepartamentoNome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamentos[0].Uh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamentos[0].CreatedAt)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamentos[0].CreatedBy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamentos[0].LastUpdatedAt)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Departamentos[0].LastUpdatedBy)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Departamentos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartamentoNumero)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartamentoNome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Uh.IATA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastUpdatedAt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastUpdatedBy)
+                                </td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@item.DepartamentoId" class="px-1">
+                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i>
+                                    </a>
+                                    <a asp-page="./Details" asp-route-id="@item.DepartamentoId" class="px-1">
+                                        <i class="fas fa-info" data-toggle="tooltip" data-placement="top" title="Detalhe"></i>
+                                    </a>
+                                    <a asp-page="./Delete" asp-route-id="@item.DepartamentoId" class="px-1">
+                                        <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="top" title="Apagar"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

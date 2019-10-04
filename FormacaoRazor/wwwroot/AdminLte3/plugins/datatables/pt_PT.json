@@ -1,0 +1,30 @@
+﻿{
+  "oAria": {
+    "sSortAscending": ": Ordenar colunas de forma ascendente",
+    "sSortDescending": ": Ordenar colunas de forma descendente"
+  },
+  "oPaginate": {
+    "sNext": "Próximo",
+    "sPrevious": "Anterior",
+    "sFirst": "Primeiro",
+    "sLast": "Último"
+  },
+  "select": {
+    "rows": {
+      "_": "Selecionado %d linhas",
+      "0": "Nenhuma linha selecionada",
+      "1": "Selecionado 1 linha"
+    }
+  },
+  "sEmptyTable": "Nenhum registro encontrado",
+  "sInfo": "A mostrar de _START_ até _END_ de _TOTAL_ registos",
+  "sInfoEmpty": "A mostrar 0 até 0 de 0 registos",
+  "sInfoFiltered": "(Filtrados de _MAX_ registos)",
+  "sInfoPostFix": "",
+  "sInfoThousands": ".",
+  "sLengthMenu": "_MENU_ resultados por página",
+  "sLoadingRecords": "A carregar...",
+  "sProcessing": "A processar...",
+  "sSearch": "Pesquisar",
+  "sZeroRecords": "Nenhum registo encontrado"
+}

@@ -1,0 +1,185 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Início";
+
+    DateTime myDate;
+    if (Model.Calendarios.FirstOrDefault().Date != null)
+    {
+        myDate = Model.Calendarios.FirstOrDefault().Date;
+    }
+    else
+    {
+        myDate = DateTime.UtcNow;
+    }
+
+    DateTime addDate = (myDate.AddMonths(1));
+    DateTime subtractDate = (myDate.AddMonths(-1));
+
+}
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<style>
+    .table-condensed thead tr:nth-child(2),
+.table-condensed tbody {
+  display: none
+}
+</style>
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <form id="select_date" name="select_date" method="post">
+                    <div class="row">
+                        <div class="col-sm-2 input-group">
+                            <select id="GuidUh" class="form-control" asp-items="ViewBag.Uhs" asp-for="GuidUh"></select>
+                            <span class="input-group-append">
+                                <button type="submit" name="postUh" asp-page-handler="Uh" class="btn btn-info"><i class="fas fa-search"></i></button>
+                            </span>
+                        </div>
+                        <div class="col-sm-2 input-group">
+                            <select id="GuidFormador" class="form-control" asp-items="ViewBag.Formadores" asp-for="GuidFormador"></select>
+                            <span class="input-group-append">
+                                <button type="submit" name="postFormador" asp-page-handler="Formador" class="btn btn-info"><i class="fas fa-search"></i></button>
+                            </span>
+                        </div>
+                        <div class="input-group col-sm-2">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn btn-info">
+                                    <i class="fas fa-caret-left"></i>
+                                </button>
+                            </div>
+                            <!-- /btn-group -->
+                            <input type="text" class="form-control" value="@Model.Calendarios.FirstOrDefault().MonthName @Model.Calendarios.FirstOrDefault().Year" disabled  style="text-align:center;"/>
+                            <span class="input-group-append">
+                                <button type="button" class="btn btn-info btn-flat">
+                                    <i class="fas fa-caret-right"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <!-- /.box-header -->
+            <div class="card-body table-responsive p-0">
+                <table id="" class="table table-head-fixed">
+                    <thead>
+                        <tr>
+                            <th>SALA</th>
+                            <th>Lotação</th>
+                            @foreach (var item in Model.Calendarios)
+                            {
+                                <th class="@(@item.IsWeekend || @item.IsHoliday ? "bg-warning" : "")"
+                                    data-toggle="tooltip" data-placement="top" title="@(@item.IsHoliday ? @item.HolidayText : "")">
+                                    <p>
+                                        @item.WeekDayName.Substring(0, 3).ToUpper()
+                                    </p>
+                                    <p>
+                                        @item.Day
+                                    </p>
+                                </th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var sala in Model.Salas)
+                        {
+                            <tr>
+                                <td nowrap>@sala.SalaNome</td>
+                                <td>@sala.Capacidade</td>
+                                @foreach (var item in Model.Calendarios)
+                                {
+                                    <td class="@(@item.IsWeekend || @item.IsHoliday ? "bg-warning" : "")">
+                                        @foreach (var m in Model.Marcacoes.Where(x => x.DataInicio.Date <= item.Date.Date && x.DataFim.Date >= item.Date.Date))
+                                        {
+                                            @if (m.SalaId == sala.SalaID)
+                                            {
+                                                <h4>
+                                                    <a asp-page="/MarcacoesPages/Details" asp-route-id="@(m.MarcacaoID)" class="button" data-toggle="tooltip" data-html="true" style="color:black"
+                                                       title="<p>@(m.Formacao.FormacaoNome)</p>Formador: <b>@(m.Formador.FormadorNome)</b><p><b>Horário: @(m.DataInicio.ToShortTimeString()) às @(m.DataFim.ToShortTimeString())</b></p> <p>@(m.Observacoes)</p>">
+                                                        <span class="badge" style="background-color: @(m.ColorCode)">
+                                                            @m.Formacao.FormacaoCod
+                                                        </span>
+                                                    </a>
+                                                </h4>
+                                            }
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <div class="col-2 input-group">
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <a class="btn btn-app" asp-page="/MarcacoesPages/Create">
+                            <i class="fas fa-plus-square"></i> Novo
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('input[name="Marcacao-Data"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: false,
+                minYear: 2019,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                "locale": {
+                    "format": "DD/MM/YYYY",
+                    "daysOfWeek": [
+                        "Dom",
+                        "Seg",
+                        "Ter",
+                        "Qua",
+                        "Qui",
+                        "Sex",
+                        "Sab"
+                    ],
+                    "monthNames": [
+                        "Janeiro",
+                        "Fevereiro",
+                        "Março",
+                        "Abril",
+                        "Maio",
+                        "Junho",
+                        "Julho",
+                        "Agosto",
+                        "Setembro",
+                        "Outubro",
+                        "Novembro",
+                        "Dezembro"
+                    ],
+                    "firstDay": 1
+                }
+            });
+        });
+    </script>
+}

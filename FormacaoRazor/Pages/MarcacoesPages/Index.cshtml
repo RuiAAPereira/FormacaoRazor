@@ -1,0 +1,104 @@
+﻿@page
+@model FormacaoRazor.Pages.MarcacoesPages.IndexModel
+
+@{
+    ViewData["Title"] = "Marcações";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a class="btn btn-app" asp-page="Create">
+                        <i class="fas fa-plus-square"></i> Novo
+                    </a>
+                }
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Fechar">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remover">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Marcacao[0].Uh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Marcacao[0].Formacao)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Marcacao[0].Formador)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Marcacao[0].Sala)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Marcacao[0].DataInicio)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Marcacao[0].DataFim)
+                            </th>
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                <th></th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Marcacao)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Uh.IATA)
+                                </td>
+                                <td>
+                                    <span class="badge" style="background-color: @(item.ColorCode)">
+                                        @item.Formacao.FormacaoCod
+                                    </span> -
+                                    @Html.DisplayFor(modelItem => item.Formacao.FormacaoNome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Formador.FormadorNome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sala.SalaNome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DataInicio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DataFim)
+                                </td>
+                                @if (User.IsInRole("Administrador"))
+                                {
+                                    <td>
+                                        <a asp-page="./Edit" asp-route-id="@item.MarcacaoID" class="px-1">
+                                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i>
+                                        </a>
+                                        <a asp-page="./Details" asp-route-id="@item.MarcacaoID" class="px-1">
+                                            <i class="fas fa-info" data-toggle="tooltip" data-placement="top" title="Detalhe"></i>
+                                        </a>
+                                        <a asp-page="./Delete" asp-route-id="@item.MarcacaoID" class="px-1">
+                                            <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="top" title="Apagar"></i>
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

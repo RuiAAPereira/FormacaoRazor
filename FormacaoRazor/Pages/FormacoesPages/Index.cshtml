@@ -1,0 +1,109 @@
+﻿@page
+@model FormacaoRazor.Pages.FormacoesPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Styles {
+    <link href="~/AdminLte3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <alert view-context="ViewContext"></alert>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-app" asp-page="Create">
+                    <i class="fas fa-plus-square"></i> Novo
+                </a>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body table-responsive">
+                <table id="tblFormacoes" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoNome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoCod)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoValidade)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoColor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoDuracao)
+                            </th>
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                <th></th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Formacao)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoNome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoCod)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoValidade) Ano(s)
+                                </td>
+                                <td>
+                                    <span><i class="fas fa-square" style="color: @item.FormacaoColor"></i></span>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoDuracao) Dia(s)
+                                </td>
+                                @if (User.IsInRole("Administrador"))
+                                {
+                                    <td>
+                                        <a asp-page="./Edit" asp-route-id="@item.FormacaoId" class="px-1">
+                                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="Editar"></i>
+                                        </a>
+                                        <a asp-page="./Details" asp-route-id="@item.FormacaoId" class="px-1">
+                                            <i class="fas fa-info" data-toggle="tooltip" data-placement="left" title="Detalhe"></i>
+                                        </a>
+                                        <a asp-page="./Delete" asp-route-id="@item.FormacaoId" class="px-1">
+                                            <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="left" title="Apagar"></i>
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/AdminLte3/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/AdminLte3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(function () {
+            $('#tblFormacoes').DataTable({
+                language: {
+                    url: '/AdminLte3/plugins/datatables/pt_PT.json'
+                }
+            });
+        });
+    </script>
+}

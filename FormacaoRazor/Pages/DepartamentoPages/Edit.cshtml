@@ -1,0 +1,57 @@
+﻿@page
+@model FormacaoRazor.Pages.DepartamentoPages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card card-orange col-md-6">
+                <div class="card-header">
+                    <h3 class="card-title">Editar Departamento</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Fechar">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remover">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <form method="post" class="form-horizontal">
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Departamento.DepartamentoId" />
+                        <div class="form-group row">
+                            <label asp-for="Departamento.DepartamentoNumero" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Departamento.DepartamentoNumero" class="form-control" />
+                                <span asp-validation-for="Departamento.DepartamentoNumero" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Departamento.DepartamentoNome" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Departamento.DepartamentoNome" class="form-control" />
+                                <span asp-validation-for="Departamento.DepartamentoNome" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Departamento.UhId" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <select asp-for="Departamento.UhId" class="form-control" asp-items="ViewBag.UhId"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" value="Gravar" class="btn btn-primary" />
+                        &nbsp;|&nbsp;<a asp-page="Index" class="btn btn-default">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,316 @@
+[ //tabela marcações
+  [
+    {
+      "MarcacaoID": "DFA66E5E-1CFA-4768-1141-08D7471B7D25",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "07457056-30D4-479C-5184-08D7468AAA10",
+      "FormadorID": "BCD988F0-3373-4921-9A1D-DDE8A607A165",
+      "SalaId": "463DB092-7C78-4509-83FE-76E62BAF677C",
+      "DataInicio": "2019-10-07T09:00:00",
+      "DataFim": "2019-10-12T17:30:00",
+      "ColorCode": "#ccffff",
+      "CreatedAt": "2019-10-02T09:32:48.5610000",
+      "CreatedBy": "rui.santos@portway.pt",
+      "LastUpdatedAt": "2019-10-02T11:11:51.9906751",
+      "LastUpdatedBy": "formacao@portway.pt"
+    },
+    {
+      "MarcacaoID": "BA5B9413-879A-401A-26CF-08D7471F064E",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "D0F115DB-8FE8-4A02-4D0F-08D747178974",
+      "FormadorID": "B0D74E71-BDC8-4A7B-9ED6-F4C592B16B5C",
+      "SalaId": "463DB092-7C78-4509-83FE-76E62BAF677C",
+      "DataInicio": "2019-10-15T09:00:00",
+      "DataFim": "2019-10-18T17:30:00",
+      "ColorCode": "#CC9900",
+      "CreatedAt": "2019-10-02T09:58:07.1780000",
+      "CreatedBy": "rui.santos@portway.pt",
+      "LastUpdatedAt": "2019-10-02T10:01:10.6520924",
+      "LastUpdatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "MarcacaoID": "242691E6-C279-421C-DB3E-08D7480EE3D2",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "2E640D0A-D530-4EB1-4D0D-08D747178974",
+      "FormadorID": "3DCCB2AA-00C0-4309-B5FE-7ECEB47C4C98",
+      "SalaId": "463DB092-7C78-4509-83FE-76E62BAF677C",
+      "DataInicio": "2019-10-01T09:00:00",
+      "DataFim": "2019-10-01T17:30:00",
+      "ColorCode": "#339966",
+      "LastUpdatedAt": "2019-10-03T14:36:55.2013347",
+      "LastUpdatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "MarcacaoID": "701D4434-5AB7-4897-DB3F-08D7480EE3D2",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "1E654833-6B7A-4A55-4D0E-08D747178974",
+      "FormadorID": "8B67F507-DAFF-4D56-92B3-F4FA61D69926",
+      "SalaId": "463DB092-7C78-4509-83FE-76E62BAF677C",
+      "DataInicio": "2019-10-03T09:00:00",
+      "DataFim": "2019-10-03T17:30:00",
+      "ColorCode": "#339966",
+      "LastUpdatedAt": "2019-10-03T14:37:03.5220079",
+      "LastUpdatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "MarcacaoID": "11BF5F3A-585A-4D79-DB40-08D7480EE3D2",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "2E640D0A-D530-4EB1-4D0D-08D747178974",
+      "FormadorID": "3DCCB2AA-00C0-4309-B5FE-7ECEB47C4C98",
+      "SalaId": "463DB092-7C78-4509-83FE-76E62BAF677C",
+      "DataInicio": "2019-10-14T09:00:00",
+      "DataFim": "2019-10-14T17:30:00",
+      "ColorCode": "#339966",
+      "LastUpdatedAt": "2019-10-03T14:37:10.7828307",
+      "LastUpdatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "MarcacaoID": "C9CB66F3-356C-4E00-DB41-08D7480EE3D2",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "0F0BDB6E-6FB9-4700-4D12-08D747178974",
+      "FormadorID": "3DCCB2AA-00C0-4309-B5FE-7ECEB47C4C98",
+      "SalaId": "463DB092-7C78-4509-83FE-76E62BAF677C",
+      "DataInicio": "2019-10-24T09:00:00",
+      "DataFim": "2019-10-24T13:00:00",
+      "ColorCode": "#FFFF00",
+      "LastUpdatedAt": "2019-10-03T14:40:04.6559893",
+      "LastUpdatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "MarcacaoID": "D9E2F4C8-7748-40D0-DB42-08D7480EE3D2",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "83776A0B-B1BC-4790-4D21-08D747178974",
+      "FormadorID": "B0D74E71-BDC8-4A7B-9ED6-F4C592B16B5C",
+      "SalaId": "7C5593FC-D0EF-494F-B2C6-0F4CCF471A6F",
+      "DataInicio": "2019-10-01T09:00:00",
+      "DataFim": "2019-10-01T17:30:00",
+      "ColorCode": "#CCFFFF",
+      "LastUpdatedAt": "2019-10-03T14:40:47.4571569",
+      "LastUpdatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "MarcacaoID": "4B2E52DC-5985-40A8-DB43-08D7480EE3D2",
+      "UhId": "04FDE6B2-FD97-4856-9640-B9E1ABC73140",
+      "FormacaoId": "48DF7FFB-9B1F-4F28-4D11-08D747178974",
+      "FormadorID": "8B67F507-DAFF-4D56-92B3-F4FA61D69926",
+      "SalaId": "463DB092-7C78-4509-83FE-76E62BAF677C",
+      "DataInicio": "2019-10-23T09:00:00",
+      "DataFim": "2019-10-23T17:30:00",
+      "ColorCode": "#00FF00",
+      "CreatedAt": "2019-10-03T14:39:09.5785949",
+      "CreatedBy": "rui.santos@portway.pt"
+    }
+  ],
+  //tabela formações
+
+  [
+    {
+      "FormacaoId": "07457056-30D4-479C-5184-08D7468AAA10",
+      "FormacaoNome": "DGR CAT 06",
+      "FormacaoCod": "D",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#CCFFCC",
+      "CreatedAt": "2019-10-01T16:16:06.9240155",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "FBC5192A-10E5-4252-4D0C-08D747178974",
+      "FormacaoNome": "BASICO PAX",
+      "FormacaoCod": "T",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#FF99CC",
+      "CreatedAt": "2019-10-02T09:04:31.2335472",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "2E640D0A-D530-4EB1-4D0D-08D747178974",
+      "FormacaoNome": "HUMAN FACTOR\t\t\t\t",
+      "FormacaoCod": "H",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#339966",
+      "CreatedAt": "2019-10-02T09:05:51.8478106",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "1E654833-6B7A-4A55-4D0E-08D747178974",
+      "FormacaoNome": "DGR CAT 9",
+      "FormacaoCod": "D2",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#339966",
+      "CreatedAt": "2019-10-02T09:08:07.1940633",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "D0F115DB-8FE8-4A02-4D0F-08D747178974",
+      "FormacaoNome": "ULD REGULATIONS (UNIT LOAD DEVICES)",
+      "FormacaoCod": "C12",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#CC9900",
+      "CreatedAt": "2019-10-02T09:09:23.1563120",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "857FDEC5-5FF8-454E-4D10-08D747178974",
+      "FormacaoNome": "SEGURANÇA NIVEL 13",
+      "FormacaoCod": "D4",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#00FFFF",
+      "CreatedAt": "2019-10-02T09:10:27.4552924",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "48DF7FFB-9B1F-4F28-4D11-08D747178974",
+      "FormacaoNome": "DGR CAT 8",
+      "FormacaoCod": "D1",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#00FF00",
+      "CreatedAt": "2019-10-02T09:11:29.4649244",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "0F0BDB6E-6FB9-4700-4D12-08D747178974",
+      "FormacaoNome": "TRIPLE A",
+      "FormacaoCod": "Q2",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#FFFF00",
+      "CreatedAt": "2019-10-02T09:12:14.7454843",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "1FA33741-0BC2-4B4A-4D13-08D747178974",
+      "FormacaoNome": "AIRSIDE PERSONNEL SAFETY PROC REF. 8H (RAMP SAFETY)",
+      "FormacaoCod": "D12",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#948A54",
+      "CreatedAt": "2019-10-02T09:13:28.6703227",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "21D1FEEE-CA5D-4A28-4D14-08D747178974",
+      "FormacaoNome": "SEGURANÇA NIVEL 13 \/ 6 \/ 7 \/ 8 \/ 10",
+      "FormacaoCod": "D7",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#B7DEE8",
+      "CreatedAt": "2019-10-02T09:14:54.1540084",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "B60EE63C-2ED9-45AC-4D15-08D747178974",
+      "FormacaoNome": "LOAD CONTROL MANUAL",
+      "FormacaoCod": "C",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#993366",
+      "CreatedAt": "2019-10-02T09:15:42.8711025",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "CB7EC317-FF50-457A-4D16-08D747178974",
+      "FormacaoNome": "PMR INICIAL",
+      "FormacaoCod": "M4",
+      "FormacaoValidade": 1,
+      "FormacaoColor": "#FFFF00",
+      "CreatedAt": "2019-10-02T09:16:53.4825353",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "FD48483C-0B06-4C98-4D17-08D747178974",
+      "FormacaoNome": "ESCOLA NACIONAL DE BOMBEIROS",
+      "FormacaoCod": "M5",
+      "FormacaoValidade": 3,
+      "FormacaoColor": "#FFFF00",
+      "CreatedAt": "2019-10-02T09:17:38.0383683",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "0D22F96F-3238-4ABB-4D18-08D747178974",
+      "FormacaoNome": "ELEARNING TRIPLE A REFRESH",
+      "FormacaoCod": "E8",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#6651ED",
+      "CreatedAt": "2019-10-02T09:18:32.2085708",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "9573A6B1-1D87-4543-4D19-08D747178974",
+      "FormacaoNome": "ELEARNING  RAMP SAFETY MYWAY 02 HORAS",
+      "FormacaoCod": "E5",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#FFCC00",
+      "CreatedAt": "2019-10-02T09:19:51.2792461",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "3BA2520E-99FD-4C97-4D1A-08D747178974",
+      "FormacaoNome": "ELEARNING  RAMP SAFETY PLACA 4 HORAS",
+      "FormacaoCod": "E6",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#CFCA35",
+      "CreatedAt": "2019-10-02T09:20:37.2116920",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "DC60FB34-4B1C-4794-4D1B-08D747178974",
+      "FormacaoNome": "ELEARNING  RAMP SAFETY PAX 02 HORAS",
+      "FormacaoCod": "E7",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#CC6600",
+      "CreatedAt": "2019-10-02T09:22:08.5051225",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "3442589E-CFC5-46B3-4D1C-08D747178974",
+      "FormacaoNome": "ELEARNING LAR REFRESH",
+      "FormacaoCod": "E9",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#00B0F0",
+      "CreatedAt": "2019-10-02T09:23:57.2482013",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "58057D8C-2D13-4C60-4D1D-08D747178974",
+      "FormacaoNome": "LOAD CONTROL ALTEA",
+      "FormacaoCod": "C5",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#FF00FF",
+      "CreatedAt": "2019-10-02T09:25:09.6488441",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "32C1644A-2F82-4318-4D1E-08D747178974",
+      "FormacaoNome": "ELEARNING DGR CAT 08 REFRESH",
+      "FormacaoCod": "E11",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#00FF00",
+      "CreatedAt": "2019-10-02T09:28:04.7063881",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "A1C1BE48-1574-4759-4D1F-08D747178974",
+      "FormacaoNome": "ELEARNING DGR CAT 09 REFRESH",
+      "FormacaoCod": "E12",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#339966",
+      "CreatedAt": "2019-10-02T09:29:02.1183912",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "25D66E06-4395-473E-4D20-08D747178974",
+      "FormacaoNome": "ELEARNING DGR CAT 10 REFRESH",
+      "FormacaoCod": "E13",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#B7DEE8",
+      "CreatedAt": "2019-10-02T09:29:48.2674431",
+      "CreatedBy": "rui.santos@portway.pt"
+    },
+    {
+      "FormacaoId": "83776A0B-B1BC-4790-4D21-08D747178974",
+      "FormacaoNome": "DGR CAT 10",
+      "FormacaoCod": "D3",
+      "FormacaoValidade": 2,
+      "FormacaoColor": "#CCFFFF",
+      "CreatedAt": "2019-10-02T09:30:42.5231168",
+      "CreatedBy": "rui.santos@portway.pt"
+    }
+  ]
+
+]

@@ -1,0 +1,76 @@
+﻿@page
+@model FormacaoRazor.Pages.DepartamentoPages.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="card card-orange">
+            <div class="card-header">
+                <h3 class="card-title">Tem a certeza que deseja apagar este registo?</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Departamento.DepartamentoNumero)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.DepartamentoNumero)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Departamento.DepartamentoNome)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.DepartamentoNome)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Departamento.Uh)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.Uh.IATA)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Departamento.CreatedAt)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.CreatedAt)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Departamento.CreatedBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.CreatedBy)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Departamento.LastUpdatedAt)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.LastUpdatedAt)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Departamento.LastUpdatedBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Departamento.LastUpdatedBy)
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                <form method="post">
+                    <input type="hidden" asp-for="Departamento.DepartamentoId" />
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    &nbsp;|&nbsp;<a asp-page="Index" class="btn btn-default">Voltar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

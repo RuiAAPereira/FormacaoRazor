@@ -1,0 +1,34 @@
+﻿[
+  {
+    "SalaID": "463db092-7c78-4509-83fe-76e62baf677c",
+    "SalaNome": "Sala 1 - Edifício 124",
+    "Capacidade": 22,
+    "UhID": "04fde6b2-fd97-4856-9640-b9e1abc73140",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "SalaID": "7fd4ba6e-267b-4a42-89bc-722c9d6003a9",
+    "SalaNome": "Sala 2 - Edifício 124, 2�piso",
+    "Capacidade": 15,
+    "UhID": "04fde6b2-fd97-4856-9640-b9e1abc73140",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "SalaID": "aae68aa3-1af8-4504-a1c2-706fabbed357",
+    "SalaNome": "Sala 3 - Edifício 124, PC's",
+    "Capacidade": 10,
+    "UhID": "04fde6b2-fd97-4856-9640-b9e1abc73140",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "SalaID": "7c5593fc-d0ef-494f-b2c6-0f4ccf471a6f",
+    "SalaNome": "Sala Nova 10",
+    "Capacidade": 22,
+    "UhID": "04fde6b2-fd97-4856-9640-b9e1abc73140",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  }
+]

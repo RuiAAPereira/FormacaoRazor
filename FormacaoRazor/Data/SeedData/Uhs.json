@@ -1,0 +1,30 @@
+[
+  {
+    "UhId": "04fde6b2-fd97-4856-9640-b9e1abc73140",
+    "IATA": "LIS",
+    "UhNome": "LISBOA",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "UhId": "57f7b1cc-c94f-4b19-871f-ee5d2e4184af",
+    "IATA": "OPO",
+    "UhNome": "PORTO",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "UhId": "b8040251-73a1-4dbd-8af3-5526ace9f710",
+    "IATA": "FAO",
+    "UhNome": "FARO",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "UhId": "660d1f5e-475b-482f-b140-c8c825e971ad",
+    "IATA": "FNC",
+    "UhNome": "FUNCHAL",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  }
+]

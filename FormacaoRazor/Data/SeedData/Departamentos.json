@@ -1,0 +1,18 @@
+﻿[
+  {
+    "DepartamentoId": "3d4b7e78-fe91-4fca-93ba-8492ab5a47e0",
+    "DepartamentoNumero": 71680,
+    "DepartamentoNome": "PMR'S",
+    "UhID": "04fde6b2-fd97-4856-9640-b9e1abc73140",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  },
+  {
+    "DepartamentoId": "f18e3fcd-adb3-4136-a31b-9f9cc9b93701",
+    "DepartamentoNumero": 70001,
+    "DepartamentoNome": "OPERAÇÕES",
+    "UhID": "04fde6b2-fd97-4856-9640-b9e1abc73140",
+    "CreatedAt": "2019-10-01T00:00:00",
+    "CreatedBy": "SISTEMA"
+  }
+]
