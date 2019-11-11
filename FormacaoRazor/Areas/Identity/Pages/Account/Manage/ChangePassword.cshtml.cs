@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using FormacaoRazor.Areas.Identity.Models;
+using FormacaoRazor.Extensions.Alerts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SmartBreadcrumbs.Attributes;
+
 namespace FormacaoRazor.Areas.Identity.Pages.Account.Manage
 {
+    [Breadcrumb("Password")]
     public class ChangePasswordModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -37,18 +38,18 @@ namespace FormacaoRazor.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Password Atual")]
             public string OldPassword { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "A {0} deverá de ter entre {2} e {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Nova password")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Confirmar nova password")]
+            [Compare("NewPassword", ErrorMessage = "As duas passwords não combinam.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -57,7 +58,7 @@ namespace FormacaoRazor.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User).ConfigureAwait(true);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Não foi possível encontrar o utilizador com o ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user).ConfigureAwait(true);
@@ -69,6 +70,7 @@ namespace FormacaoRazor.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>")]
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -79,7 +81,7 @@ namespace FormacaoRazor.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User).ConfigureAwait(true);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Não foi possível encontrar o utilizador com o ID '{_userManager.GetUserId(User)}'.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword).ConfigureAwait(true);
@@ -93,12 +95,10 @@ namespace FormacaoRazor.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user).ConfigureAwait(true);
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
             _logger.LogInformation("User changed their password successfully.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = "A sua password foi alterada com sucesso.";
 
-            return RedirectToPage();
+            return RedirectToPage().WithSuccess("OK!", "A sua password foi alterada com sucesso.");
         }
     }
 }

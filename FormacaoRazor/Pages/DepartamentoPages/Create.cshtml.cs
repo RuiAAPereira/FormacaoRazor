@@ -6,10 +6,16 @@ using FormacaoRazor.Data;
 using FormacaoRazor.Models.Common;
 using SmartBreadcrumbs.Attributes;
 using FormacaoRazor.Extensions.Alerts;
+using System;
+using System.Security.Claims;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FormacaoRazor.Pages.DepartamentoPages
 {
     [Breadcrumb("Criar", FromPage = typeof(IndexModel))]
+    [Authorize(Roles = "Admin, Administrativo")]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext db;
@@ -21,7 +27,11 @@ namespace FormacaoRazor.Pages.DepartamentoPages
 
         public IActionResult OnGet()
         {
-            ViewData["UhId"] = new SelectList(db.Uhs, "UhId", "IATA", "04fde6b2-fd97-4856-9640-b9e1abc73140");
+            string uId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<Guid> userUhs = db.UsersUhs.Where(i => i.User.Id == uId).Select(u => u.UhId).ToList();
+
+            ViewData["UhId"] = new SelectList(db.Uhs.Where(i => userUhs.Contains(i.UhId)), "UhId", "IATA", "04fde6b2-fd97-4856-9640-b9e1abc73140");
+
             return Page();
         }
 

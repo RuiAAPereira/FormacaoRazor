@@ -11,6 +11,9 @@ namespace FormacaoRazor.Areas.Identity.Models
         [PersonalData]
         public string Name { get; set; }
 
-        public ICollection<ApplicationUserRole> UserRoles { get; }
+        public ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; }
+        public ICollection<UserUh> UserUhs { get; set; }
+        public ICollection<UserDepartamento> UserDepartamento { get; set; }
+        //public ICollection<int> RoleIds { get; set; }
     }
 }

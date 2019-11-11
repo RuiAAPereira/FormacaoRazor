@@ -25,10 +25,6 @@ namespace FormacaoRazor.Models.Common
             set => _departamentoNome = value.ToUpper(CultureInfo.InvariantCulture);
 #pragma warning restore CA1062 // Validate arguments of public methods
         }
-        //link com tabela Uh (unidades de handling)
-        [Display(Name = "Unidade de handling:", ShortName = "UH:")]
-        public Guid UhId { get; set; }
-        public Uh Uh { get; set; }
 
         [Display(Name = "Registo criado em:", ShortName = "Criado em:")]
         public DateTime? CreatedAt { get; set; }

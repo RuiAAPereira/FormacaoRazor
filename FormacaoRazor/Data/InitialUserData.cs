@@ -17,14 +17,17 @@ namespace FormacaoRazor.Data
 
             _ = context.Database.EnsureCreated();
 
-            string role1 = "Administrador";
+            string role1 = "Admin";
             string desc1 = "Administrador tem acesso a tudo";
 
-            string role2 = "Formador";
-            string desc2 = "Formador";
+            string role2 = "Administrativo";
+            string desc2 = "Permissões de criar/apagar etc...";
 
-            string role3 = "Utilizador";
-            string desc3 = "Utilizador apenas consulta";
+            string role3 = "Formador";
+            string desc3 = "Formador";
+
+            string role4 = "Utilizador";
+            string desc4 = "Utilizador apenas consulta";
 
             string password = "123456";
 
@@ -42,12 +45,16 @@ namespace FormacaoRazor.Data
             {
                 await roleManager.CreateAsync(new ApplicationRole(role3, desc3, DateTime.Now)).ConfigureAwait(true);
             }
+            if (await roleManager.FindByNameAsync(role3).ConfigureAwait(true) == null)
+            {
+                await roleManager.CreateAsync(new ApplicationRole(role4, desc4, DateTime.Now)).ConfigureAwait(true);
+            }
 
             if (await userManager.FindByNameAsync("rui.santos@portway.pt").ConfigureAwait(true) == null)
             {
                 ApplicationUser user = new ApplicationUser
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = new Guid("52692ac2-a069-4f97-a2fb-c801cec9d2ff").ToString(),
                     UserName = "rui.santos@portway.pt",
                     Email = "rui.santos@portway.pt",
                     Name = "Rui Pereira"
@@ -76,7 +83,7 @@ namespace FormacaoRazor.Data
                 if (result.Succeeded)
                 {
                     await userManager.AddPasswordAsync(user, password).ConfigureAwait(true);
-                    userManager.AddToRoleAsync(user, role2).Wait();
+                    userManager.AddToRoleAsync(user, role3).Wait();
                 }
 
                 _ = user.Id;

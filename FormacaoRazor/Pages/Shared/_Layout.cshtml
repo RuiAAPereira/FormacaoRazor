@@ -1,8 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using FormacaoRazor.Extensions.Helpers;
+@{
+    var type = (string)TempData["_alert.type"];
+    var title = (string)TempData["_alert.title"];
+    var body = (string)TempData["_alert.body"];
+}
+<!DOCTYPE html>
 <html lang="pt-pt">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href='@Url.AbsoluteContent("~/")'>
     <title>@ViewData["Title"] - Formação</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,9 +23,8 @@
     <link href="~/AdminLte3/dist/css/adminlte.min.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Sweetalert -->
-    <link href="~/AdminLte3/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
-    <link href="~/AdminLte3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css" rel="stylesheet" />
+    <!-- SweetAlert2 CSS-->
+    <link href="~/AdminLte3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" rel="stylesheet" />
     <!--Site CSS-->
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Styles", required: false)
@@ -40,7 +46,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             @*<h1>@ViewData["Title"]</h1>*@
-                            <h4><ol class="breadcrumb"><breadcrumb></breadcrumb></ol></h4>
+                            <h4><span class="breadcrumb"><breadcrumb></breadcrumb></span></h4>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -55,6 +61,7 @@
             <section class="content">
                 <partial name="_StatusMessages" />
                 @RenderBody()
+                <div id="modal-placeholder"></div>
             </section>
             <!-- /.content -->
         </div>
@@ -78,12 +85,32 @@
     <script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/AdminLte3/dist/js/adminlte.min.js"></script>
-    <!-- Sweetalert -->
-    <script src="~/AdminLte3/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+    <!--Font Awsome-->
+    <script src="~/AdminLte3/plugins/fontawesome-free/js/all.min.js"></script>
     <!-- Popper -->
-    <script src="~/AdminLte3/plugins/popper/popper.min.js"></script>
+    @*<script src="~/AdminLte3/plugins/popper/popper.min.js"></script>*@
+    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+    <!-- Animate -->
+    <link href="~/AdminLte3/plugins/Animate/animate.css" rel="stylesheet" />
+    <!-- SweetAlert2 JS-->
+    <script src="~/AdminLte3/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- Site JS -->
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @if (!string.IsNullOrEmpty(type))
+    {
+        <script type="text/javascript">
+        $(document).ready(function()
+            {
+            Swal.fire({
+                title: '@title',
+                text: '@body',
+                type: '@type',
+                html: '@body'
+            });
+        });
+        </script>
+    }
 
     @RenderSection("Scripts", required: false)
 </body>

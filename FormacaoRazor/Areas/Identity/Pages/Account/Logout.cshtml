@@ -1,10 +1,10 @@
 ﻿@page
 @model LogoutModel
 @{
-    ViewData["Title"] = "Log out";
+    Layout = "~/Areas/Identity/Pages/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "Centro de formação";
 }
 
-<header>
     <h1>@ViewData["Title"]</h1>
-    <p>You have successfully logged out of the application.</p>
-</header>
+    <p>Deslogou-se da aplicação com sucesso.</p>
+    <a class="nav-link" asp-area="Identity" asp-page="/Account/Login" title="Admin">Entrar</a>

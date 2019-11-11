@@ -29,7 +29,7 @@ namespace FormacaoRazor.Pages.DepartamentoPages
             }
 
             Departamento = await db.Departamentos
-                .Include(d => d.Uh).FirstOrDefaultAsync(m => m.DepartamentoId == id).ConfigureAwait(true);
+                .FirstOrDefaultAsync(m => m.DepartamentoId == id).ConfigureAwait(true);
 
             if (Departamento == null)
             {

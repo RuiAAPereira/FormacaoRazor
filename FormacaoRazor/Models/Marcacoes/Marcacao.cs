@@ -30,8 +30,12 @@ namespace FormacaoRazor.Models.Marcacoes
         public Guid SalaId { get; set; }
         public Sala Sala { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data de Início:", ShortName = "Início:")]
         public DateTime DataInicio { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data de Fim:", ShortName = "Fim:")]
         public DateTime DataFim { get; set; }
 

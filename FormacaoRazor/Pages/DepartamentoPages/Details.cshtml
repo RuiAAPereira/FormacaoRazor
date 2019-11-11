@@ -5,8 +5,8 @@
     ViewData["Title"] = "Detalhe";
 }
 
-<div class="container-fluid">
-    <div class="row">
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm12">
         <div class="card card-orange">
             <div class="card-header">
                 <h3 class="card-title">Detalhe</h3>
@@ -21,53 +21,54 @@
             </div>
             <div class="card-body">
                 <dl class="row">
-                    <dt class="col-sm-2">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.Departamento.DepartamentoNumero)
                     </dt>
-                    <dd class="col-sm-10">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.Departamento.DepartamentoNumero)
                     </dd>
-                    <dt class="col-sm-2">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.Departamento.DepartamentoNome)
                     </dt>
-                    <dd class="col-sm-10">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.Departamento.DepartamentoNome)
                     </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Departamento.Uh)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Departamento.Uh.IATA)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Departamento.CreatedAt)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Departamento.CreatedAt)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Departamento.CreatedBy)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Departamento.CreatedBy)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Departamento.LastUpdatedAt)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Departamento.LastUpdatedAt)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Departamento.LastUpdatedBy)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Departamento.LastUpdatedBy)
-                    </dd>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Departamento.CreatedAt)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Departamento.CreatedAt)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Departamento.CreatedBy)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Departamento.CreatedBy)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Departamento.LastUpdatedAt)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Departamento.LastUpdatedAt)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Departamento.LastUpdatedBy)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Departamento.LastUpdatedBy)
+                        </dd>
+                    }
                 </dl>
             </div>
             <div class="card-footer">
-                <a asp-page="./Edit" asp-route-id="@Model.Departamento.DepartamentoId" class="btn btn-primary">Editar</a>
-                &nbsp;|&nbsp;<a asp-page="Index" class="btn btn-default">Voltar</a>
+                @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                {
+                    <a asp-page="./Edit" asp-route-id="@Model.Departamento.DepartamentoId" class="btn btn-primary">Editar</a>
+                    <span>&nbsp;|&nbsp;</span>
+                }
+                &nbsp;|&nbsp;<a href="javascript:history.go(-1)" class="btn btn-default">Voltar</a>
             </div>
         </div>
     </div>

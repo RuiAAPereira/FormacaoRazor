@@ -1,33 +1,36 @@
-﻿<aside class="main-sidebar sidebar-dark-orange elevation-4 sidebar-collapse">
+﻿@using FormacaoRazor.Areas.Identity.Models
+@inject UserManager<ApplicationUser> UserManager
+<aside class="main-sidebar sidebar-dark-orange elevation-4 sidebar-collapse">
     <!-- Brand Logo -->
     <a asp-page="/Index" class="brand-link navbar-orange">
-        @*<img src="../../dist/img/AdminLTELogo.png"
-            alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3"
-            style="opacity: .8">*@
+        <img src="~/AdminLte3/dist/img/logo.png"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
         <span class="brand-text font-weight-light"><b>for</b>mação</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar sidebar-collapse">
         <!-- Sidebar user (optional) -->
-        @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="~/AdminLte3/dist/img/user-blue.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a  asp-area="Identity" asp-page="/Account/Manage/ChangePassword" class="d-block">@UserManager.GetUserAsync(User).Result.Name</a>
             </div>
-        </div>*@
+        </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
+                @*<li class="nav-item has-treeview menu-open">*@
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fas fa-table"></i>
                         <p>
                             Tabelas
                             <i class="right fas fa-angle-left"></i>
@@ -36,24 +39,52 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a asp-page="/DepartamentoPages/Index" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-address-card nav-icon"></i>
                                 <p>Departamentos</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-page="/MarcacoesPages/Index" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-calendar-check nav-icon"></i>
                                 <p>Marcações</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-page="/FormacoesPages/Index" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-book nav-icon"></i>
                                 <p>Formações</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-page="/SalasPages/Index" class="nav-link">
+                                <i class="fas fa-school nav-icon"></i>
+                                <p>Salas</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a asp-page="/FormandosPages/ColaboradoresPages/Index" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Colaboradores</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-page="/FormacoesColaboradorPages/Index" class="nav-link">
+                        <i class="fas fa-calendar nav-icon"></i>
+                        <p>Caducidades</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-page="/FormacoesColaboradorPages/Planeamento" class="nav-link">
+                        <i class="fas fa-calendar-alt nav-icon"></i>
+                        <p>Planeamento</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

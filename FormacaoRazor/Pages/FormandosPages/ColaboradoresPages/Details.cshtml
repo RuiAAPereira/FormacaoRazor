@@ -1,0 +1,491 @@
+﻿@page
+@model FormacaoRazor.Pages.FormandosPages.ColaboradoresPages.DetailsModel
+
+@{
+    ViewData["Title"] = @Html.DisplayFor(model => model.Colaborador.Nome);
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    DateTime agora = DateTime.UtcNow;
+}
+
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm12">
+        <div class="card card-orange">
+            <div class="card-header">
+                <h3 class="card-title">Detalhe:</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Colaborador.Uh)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Colaborador.Uh.IATA)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Colaborador.Departamento)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Colaborador.Departamento.DepartamentoNome)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Colaborador.NumCartao)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Colaborador.NumCartao)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Colaborador.NumPw)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Colaborador.NumPw)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Colaborador.Nome)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Colaborador.Nome)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Colaborador.Funcao)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Colaborador.Funcao.FuncaoNome)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Colaborador.Ativo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Colaborador.Ativo)
+                    </dd>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                    {
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Colaborador.CreatedAt)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Colaborador.CreatedAt)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Colaborador.CreatedBy)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Colaborador.CreatedBy)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Colaborador.LastUpdatedAt)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Colaborador.LastUpdatedAt)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Colaborador.LastUpdatedBy)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Colaborador.LastUpdatedBy)
+                        </dd>
+                    }
+                </dl>
+            </div>
+            <div class="card-footer">
+                <form method="post">
+                    @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@Model.Colaborador.ColaboradorID">Editar</a>
+                    }
+                    &nbsp;|&nbsp;
+                    @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                    {
+                        <a asp-page="/FormacoesColaboradorPages/Create" asp-route-cId="@Model.Colaborador.ColaboradorID">
+                            Adicionar Formação
+                        </a>
+                    }
+                    &nbsp;|&nbsp;<a href="javascript:history.go(-1)" class="btn btn-default">Voltar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Formações Ativas</h4>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="tblCaducidades">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FormacaoColaboradorList[0].Formacao)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FormacaoColaboradorList[0].FormacaoData)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FormacaoColaboradorList[0].FormacaoCaducidade)
+                            </th>
+                            <th>
+                                Status:
+                            </th>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                            {
+                                <th></th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.FormacaoColaboradorList)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Formacao.FormacaoNome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoData)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoCaducidade)
+                                </td>
+                                <td>
+                                    <span class="@(item.FormacaoCaducidade < agora ? "badge bg-danger" : (item.FormacaoCaducidade <= agora.AddMonths(3) ?  "badge bg-warning" :  "badge bg-success"))">
+                                        @(item.FormacaoCaducidade < agora ? "Caducada" : (item.FormacaoCaducidade <= agora.AddMonths(3) ? "A caducar" : "Ok"))
+                                    </span>
+                                </td>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                                {
+                                    <td style="min-width:70px; max-width:75px">
+                                        <form asp-page-handler="deleteFormacao"
+                                              asp-route-idFormacao="@item.FormacaoColaboradorId"
+                                              asp-route-id="@item.ColaboradorId"
+                                              id="deleteForm" method="post" class="form-inline" style="display: inline-block;">
+                                            <a asp-page="/FormacoesColaboradorPages/Edit" asp-route-id="@item.FormacaoColaboradorId" class="px-1">
+                                                <i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="Editar"></i>
+                                            </a>
+                                            &nbsp;|&nbsp;
+                                            <button class="btn btn-link deleteBtn">
+                                                <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="left" title="Apagar"></i>
+                                            </button>
+                                        </form>
+                                        <form asp-page-handler="archive"
+                                              asp-route-idFormacao="@item.FormacaoColaboradorId"
+                                              asp-route-id="@item.ColaboradorId"
+                                              method="post" class="form-inline" style="display: inline-block;">
+                                            <button class="btn btn-link archiveBtn">
+                                                <i class="fas fa-archive" data-toggle="tooltip" data-placement="left" title="Arquivar"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Histórico de formações</h4>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="tblHistoricoCaducidades">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HistoricoFormacaoColaboradorList[0].Formacao)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HistoricoFormacaoColaboradorList[0].FormacaoData)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HistoricoFormacaoColaboradorList[0].FormacaoCaducidade)
+                            </th>
+                            <th>
+                                Status:
+                            </th>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                            {
+                                <th></th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.HistoricoFormacaoColaboradorList)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Formacao.FormacaoNome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoData)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FormacaoCaducidade)
+                                </td>
+                                <td>
+                                    <span class="@(item.FormacaoCaducidade < agora ? "badge bg-danger" : (item.FormacaoCaducidade <= agora.AddMonths(3) ?  "badge bg-warning" :  "badge bg-success"))">
+                                        @(item.FormacaoCaducidade < agora ? "Caducada" : (item.FormacaoCaducidade <= agora.AddMonths(3) ? "A caducar" : "Ok"))
+                                    </span>
+                                </td>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                                {
+                                    <td style="min-width:70px; max-width:75px">
+                                        <form asp-page-handler="deleteHistory"
+                                              asp-route-idHistory="@item.HistoricoFormacaoColaboradorId"
+                                              asp-route-id="@item.ColaboradorId"
+                                              id="deleteHistoryForm" method="post" class="form-inline" style="display: inline-block;">
+                                            <a asp-page="./Edit" asp-route-id="@item.HistoricoFormacaoColaboradorId" class="px-1">
+                                                <i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="Editar"></i>
+                                            </a>
+                                            &nbsp;|&nbsp;
+                                            <button class="btn btn-link deleteBtn">
+                                                <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="left" title="Apagar"></i>
+                                            </button>
+                                        </form>
+                                        <form asp-page-handler="activate"
+                                              asp-route-idHistory="@item.HistoricoFormacaoColaboradorId"
+                                              asp-route-id="@item.ColaboradorId"
+                                              method="post" class="form-inline" style="display: inline-block;">
+                                            <button class="btn btn-link activateBtn">
+                                                <i class="fas fa-archive" data-toggle="tooltip" data-placement="left" title="Recuperar"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/AdminLte3/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/AdminLte3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/AdminLte3/plugins/moment/moment.min.js"></script>
+    <script src="~/AdminLte3/plugins/moment/moment-with-locales.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.11/sorting/datetime-moment.js"></script>
+    <script src="~/AdminLte3/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/AdminLte3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/AdminLte3/plugins/jszip/jszip.min.js"></script>
+    <script src="~/AdminLte3/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/AdminLte3/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/AdminLte3/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/AdminLte3/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+
+    <script>
+        $(function () {
+            $.fn.dataTable.moment('DD-MM-YYYY');
+            $('#tblCaducidades').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    }
+                ],
+                "order": [
+                    [2, 'asc']
+                ],
+                language: {
+                    url: '/AdminLte3/plugins/datatables/pt_PT.json'
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $.fn.dataTable.moment('DD-MM-YYYY');
+            $('#tblHistoricoCaducidades').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    }
+                ],
+                "order": [
+                    [2, 'asc']
+                ],
+                language: {
+                    url: '/AdminLte3/plugins/datatables/pt_PT.json'
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".deleteBtn").click(function (e) {
+                //whenever our button is clicked
+                e.preventDefault();
+                // stop the default behavior(navigation)
+                let $form = $(this).closest('form');
+                //get a reference to the container form
+                Swal.fire({
+                    title: 'Tem a certeza?',
+                    text: "Não conseguirá recuperar a entrada!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ec6c62',
+                    confirmButtonText: 'Sim, apagar!',
+                    cancelButtonText: 'Cancelar!',
+                    animation: false,
+                    customClass: {
+                        popup: 'animated tada'
+                    }
+                }).then((result) => {
+                    if (result.value) {
+                        $form.submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire({
+                            title: 'Cancelado!',
+                            text: "",
+                            type: 'info',
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".archiveBtn").click(function (e) {
+                //whenever our button is clicked
+                e.preventDefault();
+                // stop the default behavior(navigation)
+                let $form = $(this).closest('form');
+                //get a reference to the container form
+                Swal.fire({
+                    title: 'Tem a certeza?',
+                    text: "Deseja arquivar este registo?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ec6c62',
+                    confirmButtonText: 'Sim, arquivar!',
+                    cancelButtonText: 'Cancelar!',
+                    animation: false,
+                    customClass: {
+                        popup: 'animated tada'
+                    }
+                }).then((result) => {
+                    if (result.value) {
+                        $form.submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire({
+                            title: 'Cancelado!',
+                            text: "",
+                            type: 'info',
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".activateBtn").click(function (e) {
+                //whenever our button is clicked
+                e.preventDefault();
+                // stop the default behavior(navigation)
+                let $form = $(this).closest('form');
+                //get a reference to the container form
+                Swal.fire({
+                    title: 'Tem a certeza?',
+                    text: "Deseja reativar este registo?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ec6c62',
+                    confirmButtonText: 'Sim, reativar!',
+                    cancelButtonText: 'Cancelar!',
+                    animation: false,
+                    customClass: {
+                        popup: 'animated tada'
+                    }
+                }).then((result) => {
+                    if (result.value) {
+                        $form.submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire({
+                            title: 'Cancelado!',
+                            text: "",
+                            type: 'info',
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+
+}

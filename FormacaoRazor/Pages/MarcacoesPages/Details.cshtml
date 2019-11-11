@@ -5,8 +5,8 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="container-fluid">
-    <div class="row">
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm12">
         <div class="card card-orange">
             <div class="card-header">
                 <h3 class="card-title">Detalhe:</h3>
@@ -97,8 +97,11 @@
             </div>
             <div class="card-footer">
                 <form method="post">
-                    <a asp-page="./Edit" asp-route-id="@Model.Marcacao.MarcacaoID">Edit</a>
-                    &nbsp;|&nbsp;<a asp-page="Index" class="btn btn-default">Voltar</a>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@Model.Marcacao.MarcacaoID">Editar</a>
+                    }
+                    &nbsp;|&nbsp;<a href="javascript:history.go(-1)" class="btn btn-default">Voltar</a>
                 </form>
             </div>
         </div>

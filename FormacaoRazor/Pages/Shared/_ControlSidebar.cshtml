@@ -1,5 +1,40 @@
 ﻿<aside class="control-sidebar control-sidebar-dark">
     <div class="p-3 control-sidebar-content">
         <h5>Menu</h5>
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane active" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Tabelas</h3>
+                <ul class="control-sidebar-menu" data-widget="tree">
+                    <li class="treeview">
+                        <ul class="treeview-menu">
+                            <li><a asp-page="/Tabelas/Horarios/Index">Listagem</a></li>
+                            <li><a asp-area="Identity" asp-page="/Admin/Roles/Index" title="Admin">Roles</a></li>
+                            <li><a asp-area="Identity" asp-page="/Admin/UsersPages/Create" title="Admin">Criar Utilizador</a></li>
+                            <li><a asp-area="Identity" asp-page="/Admin/UsersPages/Index" title="Admin">Listagem de Utilizadores</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+                @*<h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="pull-right-container">
+                                    <span class="label label-danger pull-right">70%</span>
+                                </span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>*@
+                <!-- /.control-sidebar-menu -->
+            </div>
+            <!-- /.tab-pane -->
+        </div>
     </div>
 </aside>

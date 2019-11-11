@@ -5,10 +5,12 @@ using FormacaoRazor.Models;
 using SmartBreadcrumbs.Attributes;
 using FormacaoRazor.Data;
 using FormacaoRazor.Extensions.Alerts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FormacaoRazor.Pages.FormacoesPages
 {
     [Breadcrumb("Criar", FromPage = typeof(IndexModel))]
+    [Authorize(Roles = "Admin, Administrativo")]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext db;

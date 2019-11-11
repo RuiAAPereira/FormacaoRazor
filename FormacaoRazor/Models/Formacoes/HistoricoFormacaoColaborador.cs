@@ -13,14 +13,20 @@ namespace FormacaoRazor.Models.Formacoes
         [Display(Name = "Formação:")]
         public Guid FormacaoId { get; set; }
         public Formacao Formacao { get; set; }
-        //link com tabela Colaborador
+        //link com tabela Colaborador\
         [Display(Name = "Formando:")]
         public Guid ColaboradorId { get; set; }
         public Colaborador Colaborador { get; set; }
         [Display(Name = "Data:")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FormacaoData { get; set; }
         [Display(Name = "Caducidade:")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FormacaoCaducidade { get; set; }
+
+        public bool RefreshRequired { get; set; } = true;
 
         [Display(Name = "Registo criado em:", ShortName = "Criado em:")]
         public DateTime? CreatedAt { get; set; }

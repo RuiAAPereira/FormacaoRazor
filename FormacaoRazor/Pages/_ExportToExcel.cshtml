@@ -1,0 +1,65 @@
+﻿@page
+@model IndexModel
+@{
+    DateTime myDate;
+    if (Model.Calendarios.FirstOrDefault().Date != null)
+    {
+        myDate = Model.Calendarios.FirstOrDefault().Date;
+    }
+    else
+    {
+        myDate = DateTime.UtcNow;
+    }
+
+    DateTime addDate = (myDate.AddMonths(1));
+    DateTime subtractDate = (myDate.AddMonths(-1));
+
+}
+<table id="" class="table table-striped table-head-fixed table-bordered">
+    <thead>
+        <tr>
+            <th>SALA</th>
+            <th>Lotação</th>
+            @foreach (var item in Model.Calendarios)
+            {
+                <th style="text-align:center" class="@(@item.IsWeekend || @item.IsHoliday ? "bg-warning" : "")"
+                    data-toggle="tooltip" data-placement="top" title="@(@item.IsHoliday ? @item.HolidayText : "")">
+                    <p>
+                        @item.WeekDayName.Substring(0, 3).ToUpper()
+                    </p>
+                    <p>
+                        @item.Day
+                    </p>
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sala in Model.Salas)
+        {
+            <tr>
+                <td nowrap>@sala.SalaNome</td>
+                <td>@sala.Capacidade</td>
+                @foreach (var item in Model.Calendarios)
+                {
+                    <td class="@(@item.IsWeekend || @item.IsHoliday ? "bg-warning" : "")" style="text-align:center">
+                        @foreach (var m in Model.Marcacoes.Where(x => x.DataInicio.Date <= item.Date.Date && x.DataFim.Date >= item.Date.Date))
+                        {
+                            @if (m.SalaId == sala.SalaID)
+                            {
+                                <h4>
+                                    <a asp-page="/MarcacoesPages/Details" asp-route-id="@(m.MarcacaoID)" class="button" data-toggle="tooltip" data-html="true" style="color:black"
+                                       title="<p>@(m.Formacao.FormacaoNome)</p>Formador: <b>@(m.Formador.FormadorNome)</b><p><b>Horário: @(m.DataInicio.ToShortTimeString()) às @(m.DataFim.ToShortTimeString())</b></p> <p>@(m.Observacoes)</p>">
+                                        <span class="badge" style="background-color: @(m.ColorCode)">
+                                            @m.Formacao.FormacaoCod
+                                        </span>
+                                    </a>
+                                </h4>
+                            }
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

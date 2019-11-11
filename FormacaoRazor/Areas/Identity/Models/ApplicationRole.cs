@@ -16,13 +16,13 @@ namespace FormacaoRazor.Areas.Identity.Models
         {
             base.Name = roleName;
 
-            this.Description = description;
-            this.CreatedDate = createdDate;
+            Description = description;
+            CreatedDate = createdDate;
         }
 
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public ICollection<ApplicationUserRole> UserRoles { get; }
+        public ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; }
     }
 }

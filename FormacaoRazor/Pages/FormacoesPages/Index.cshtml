@@ -7,14 +7,17 @@
 @section Styles {
     <link href="~/AdminLte3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
-<div class="container-fluid">
-    <alert view-context="ViewContext"></alert>
-    <div class="row">
+<div class="row">
+    <div class="col-lg-8 col-md-10 col-sm12">
+        <alert view-context="ViewContext"></alert>
         <div class="card">
             <div class="card-header">
-                <a class="btn btn-app" asp-page="Create">
-                    <i class="fas fa-plus-square"></i> Novo
-                </a>
+                @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                {
+                    <a class="btn btn-app" asp-page="Create">
+                        <i class="fas fa-plus-square"></i> Novo
+                    </a>
+                }
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -29,28 +32,28 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoNome)
+                                @Html.DisplayNameFor(model => model.FormacaoList[0].FormacaoNome)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoCod)
+                                @Html.DisplayNameFor(model => model.FormacaoList[0].FormacaoCod)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoValidade)
+                                @Html.DisplayNameFor(model => model.FormacaoList[0].FormacaoValidade)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoColor)
+                                @Html.DisplayNameFor(model => model.FormacaoList[0].FormacaoColor)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Formacao[0].FormacaoDuracao)
+                                @Html.DisplayNameFor(model => model.FormacaoList[0].FormacaoDuracao)
                             </th>
-                            @if (User.IsInRole("Administrador"))
+                            @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
                             {
                                 <th></th>
                             }
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Formacao)
+                        @foreach (var item in Model.FormacaoList)
                         {
                             <tr>
                                 <td>
@@ -68,18 +71,20 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FormacaoDuracao) Dia(s)
                                 </td>
-                                @if (User.IsInRole("Administrador"))
+                                @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
                                 {
                                     <td>
-                                        <a asp-page="./Edit" asp-route-id="@item.FormacaoId" class="px-1">
-                                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="Editar"></i>
-                                        </a>
-                                        <a asp-page="./Details" asp-route-id="@item.FormacaoId" class="px-1">
-                                            <i class="fas fa-info" data-toggle="tooltip" data-placement="left" title="Detalhe"></i>
-                                        </a>
-                                        <a asp-page="./Delete" asp-route-id="@item.FormacaoId" class="px-1">
-                                            <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="left" title="Apagar"></i>
-                                        </a>
+                                        <form asp-page-handler="delete" asp-route-id="@item.FormacaoId" id="deleteForm" method="post" class="form-inline">
+                                            <a asp-page="./Edit" asp-route-id="@item.FormacaoId" class="px-1">
+                                                <i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="Editar"></i>
+                                            </a>&nbsp;|&nbsp;
+                                            <a asp-page="./Details" asp-route-id="@item.FormacaoId" class="px-1">
+                                                <i class="fas fa-info" data-toggle="tooltip" data-placement="left" title="Detalhe"></i>
+                                            </a>&nbsp;|&nbsp;
+                                            <button class="btn btn-link deleteBtn">
+                                                <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="left" title="Apagar"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 }
                             </tr>
@@ -105,5 +110,41 @@
                 }
             });
         });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $(".deleteBtn").click(function (e) {
+                //whenever our button is clicked
+                e.preventDefault();
+                // stop the default behavior(navigation)
+                let $form = $(this).closest('form');
+                //get a reference to the container form
+                Swal.fire({
+                    title: 'Tem a certeza?',
+                    text: "Não conseguirá recuperar a entrada!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ec6c62',
+                    confirmButtonText: 'Sim, apagar!',
+                    cancelButtonText: 'Cancelar!',
+                    animation: false,
+                    customClass: {
+                        popup: 'animated tada'
+                    }
+                }).then((result) => {
+                    if (result.value) {
+                        $form.submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire({
+                            title: 'Cancelado!',
+                            text: "",
+                            type: 'info',
+                        });
+                    }
+                });
+            });
+        })
     </script>
 }

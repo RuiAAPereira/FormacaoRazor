@@ -1,0 +1,156 @@
+﻿@page
+@model FormacaoRazor.Areas.Identity.Pages.Admin.UsersPages.IndexModel
+@section Styles {
+    <!-- DataTables -->
+    <link href="~/AdminLte3/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm12 col-12">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-app" asp-page="Create">
+                    <i class="fas fa-plus-square"></i> Novo
+                </a>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="tblUtilizadores" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApplicationUsersList[0].UserName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApplicationUsersList[0].Name)
+                            </th>
+                            <th>
+                                Função
+                            </th>
+                            <th>
+                                UH'S
+                            </th>
+                            <th>
+                                Departamentos
+                            </th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ApplicationUsersList)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @{var listRoles = Model.ApplicationUserRoles.Where(i => i.UserId == item.Id);}
+                                @foreach (var r in listRoles)
+                                {
+                                    <p>
+                                        @{ var roleName = Model.ApplicationRoles.Where(i => i.Id == r.RoleId).Select(n => n.Name).FirstOrDefault().ToString();}
+                                        @roleName
+                                    </p>
+                                }
+                            </td>
+                            <td>
+                                @{var listUhs = Model.UserUhs.Where(i => i.User.Id == item.Id);}
+                                @foreach (var u in listUhs)
+                                {
+                                    <span>
+                                        @{ var uhIata = Model.Uhs.Where(i => i.UhId == u.UhId).Select(n => n.IATA).FirstOrDefault().ToString();}
+                                        @uhIata,&nbsp;
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @{var listDepartamentos = Model.UserDepartamentos.Where(i => i.User.Id == item.Id);}
+                                @foreach (var d in listDepartamentos)
+                                {
+                                    <span>
+                                        @{ var depNome = Model.Departamentos.Where(i => i.DepartamentoId == d.DepartamentoId).Select(n => n.DepartamentoNome).FirstOrDefault().ToString();}
+                                        @depNome,&nbsp;
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-page-handler="delete" asp-route-id="@item.Id" id="deleteForm" method="post">
+                                    <a asp-page="./Edit" asp-route-id="@item.Id">
+                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="left" title="Editar"></i>
+                                    </a>&nbsp;|
+                                    <button class="btn btn-link deleteBtn">
+                                        <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="left" title="Apagar"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!-- DataTables -->
+    <script src="~/AdminLte3/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/AdminLte3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#tblUtilizadores').DataTable({
+                language: {
+                    url: '/AdminLte3/plugins/datatables/pt_PT.json'
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $(".deleteBtn").click(function (e) {
+                //whenever our button is clicked
+                e.preventDefault();
+                // stop the default behavior(navigation)
+                let $form = $(this).closest('form');
+                //get a reference to the container form
+                Swal.fire({
+                    title: 'Tem a certeza?',
+                    text: "Não conseguirá recuperar a entrada!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ec6c62',
+                    confirmButtonText: 'Sim, apagar!',
+                    cancelButtonText: 'Cancelar!',
+                    animation: false,
+                    customClass: {
+                        popup: 'animated tada'
+                    }
+                }).then((result) => {
+                    if (result.value) {
+                        $form.submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire({
+                            title: 'Cancelado!',
+                            text: "",
+                            type: 'info',
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+
+}

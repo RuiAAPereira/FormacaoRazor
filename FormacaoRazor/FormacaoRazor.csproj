@@ -5,12 +5,13 @@
     <UserSecretsId>aspnet-FormacaoRazor-149DCD66-CAF6-4260-A8F0-81B552B06B79</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <StartupObject>FormacaoRazor.Program</StartupObject>
-    <Version>1.0.5</Version>
+    <Version>1.0.8</Version>
     <Copyright>Rui Pereira</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <AssemblyName>FormacaoRazor</AssemblyName>
+    <AllowUntrustedCertificate>true</AllowUntrustedCertificate>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -18,21 +19,40 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <NoWarn>1701;1702;CA2227</NoWarn>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\Back\**" />
+    <Content Remove="Data\Migrations\Back\**" />
+    <EmbeddedResource Remove="Data\Migrations\Back\**" />
+    <None Remove="Data\Migrations\Back\**" />
+    <TypeScriptCompile Remove="Data\Migrations\Back\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20191007154827_UserRolesAndUh.cs" />
+    <Compile Remove="Data\Migrations\20191007154827_UserRolesAndUh.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191021084433_MigFormacoesColaboradores.cs" />
+    <Compile Remove="Data\Migrations\20191021084433_MigFormacoesColaboradores.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191024082124_MigUserAssignements.cs" />
+    <Compile Remove="Data\Migrations\20191024082124_MigUserAssignements.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.3.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.6.3">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.6.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="SmartBreadcrumbs" Version="2.1.0" />
   </ItemGroup>
 
@@ -41,6 +61,11 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Temp\" />
+    <Folder Include="wwwroot\AdminLte3\plugins\SheetJs\" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

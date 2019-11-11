@@ -8,10 +8,12 @@ using FormacaoRazor.Models;
 using SmartBreadcrumbs.Attributes;
 using FormacaoRazor.Extensions.Alerts;
 using FormacaoRazor.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FormacaoRazor.Pages.FormacoesPages
 {
     [Breadcrumb("Editar", FromPage = typeof(IndexModel))]
+    [Authorize(Roles = "Admin, Administrativo")]
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext db;

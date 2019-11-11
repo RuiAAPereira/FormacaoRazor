@@ -43,7 +43,7 @@ namespace FormacaoRazor.Models.Formandos
         public Funcao Funcao { get; set; }
 
         [Display(Name = "Ativo?:")]
-        public bool? Ativo { get; set; }
+        public bool Ativo { get; set; } = true;
 
         [Display(Name = "Registo criado em:", ShortName = "Criado em:")]
         public DateTime? CreatedAt { get; set; }

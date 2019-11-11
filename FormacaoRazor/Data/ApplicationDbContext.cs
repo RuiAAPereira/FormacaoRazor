@@ -37,7 +37,10 @@ namespace FormacaoRazor.Data
         }
 
         #region set DbSet
-        public DbSet<ApplicationRole> ApplicationRole { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
+        public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
         public DbSet<Colaborador> Colaboradores { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
         public DbSet<Formacao> Formacoes { get; set; }
@@ -49,6 +52,8 @@ namespace FormacaoRazor.Data
         public DbSet<Sala> Salas { get; set; }
         public virtual DbSet<Calendario> Calendarios { get; set; }
         public DbSet<Marcacao> Marcacoes { get; set; }
+        public DbSet<UserUh> UsersUhs { get; set; }
+        public DbSet<UserDepartamento> UsersDepartamentos { get; set; }
 
         #endregion
 
@@ -213,15 +218,6 @@ namespace FormacaoRazor.Data
 
             #endregion
 
-            #region Departamento
-
-            _ = builder.Entity<Departamento>()
-                .HasOne(b => b.Uh)
-                .WithMany(a => a.Departamentos)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            #endregion
-
             #region Seed Data
             // Seed Uh's
             string UhsFile = Path.Combine(env.ContentRootPath, folderName, "Uhs.json");
@@ -313,6 +309,5 @@ namespace FormacaoRazor.Data
                 }
             }
         }
-
     }
 }

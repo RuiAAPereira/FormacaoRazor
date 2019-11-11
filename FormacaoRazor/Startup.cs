@@ -14,6 +14,7 @@ using SmartBreadcrumbs.Extensions;
 using System.Globalization;
 using FormacaoRazor.Areas.Identity.Models;
 using Microsoft.AspNetCore.Localization;
+using System.Linq;
 
 namespace FormacaoRazor
 {
@@ -38,8 +39,8 @@ namespace FormacaoRazor
 
             _ = services.Configure<CookiePolicyOptions>(options =>
               {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                  // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                  options.CheckConsentNeeded = context => true;
                   options.MinimumSameSitePolicy = SameSiteMode.None;
               });
 
@@ -55,34 +56,41 @@ namespace FormacaoRazor
             //configuração de segurança "login"
             _ = services.Configure<IdentityOptions>(options =>
               {
-                // Password settings.
-                options.Password.RequireDigit = true;
+                  // Password settings.
+                  options.Password.RequireDigit = true;
                   options.Password.RequiredLength = 6;
                   options.Password.RequireNonAlphanumeric = false;
                   options.Password.RequireUppercase = false;
                   options.Password.RequireLowercase = false;
                   options.Password.RequiredUniqueChars = 4;
 
-                // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                  // Lockout settings.
+                  options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                   options.Lockout.MaxFailedAccessAttempts = 10;
                   options.Lockout.AllowedForNewUsers = true;
 
-                // User settings.
-                options.User.AllowedUserNameCharacters =
-                  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                  // User settings.
+                  options.User.AllowedUserNameCharacters =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                   options.User.RequireUniqueEmail = true;
               });
 
             _ = services.ConfigureApplicationCookie(options =>
               {
-                // Cookie settings
-                options.Cookie.HttpOnly = true;
+                  // Cookie settings
+                  options.Cookie.HttpOnly = true;
                   options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                   options.LoginPath = "/Identity/Account/Login";
                   options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                   options.SlidingExpiration = true;
               });
+
+            _ = services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRights", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("RequireFormacaoRights", policy => policy.RequireRole("Admin", "Formador"));
+                options.AddPolicy("RequireCreateRights", policy => policy.RequireRole("Admin", "Administrativo"));
+            });
 
             _ = services.AddMvc()
                 .AddRazorPagesOptions(options =>
@@ -104,8 +112,10 @@ namespace FormacaoRazor
             });
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public static void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context, RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager)
+        //public static void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context, RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager)
+        public static void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -119,24 +129,44 @@ namespace FormacaoRazor
                 app.UseHsts();
             }
 
-            _ = new[] { new CultureInfo("pt-PT") };
-            _ = app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                SupportedCultures = new List<CultureInfo> { new CultureInfo("pt-PT") },
-                SupportedUICultures = new List<CultureInfo> { new CultureInfo("pt-PT") },
-                DefaultRequestCulture = new RequestCulture("pt-PT")
-            });
-
-            _ = app.UseHttpsRedirection();
             _ = app.UseStaticFiles();
 
+            //IList<CultureInfo> supportedCultures = new List<CultureInfo>
+            //{
+            //    new CultureInfo("pt-PT"),
+            //};
+
+            //_ = app.UseRequestLocalization(new RequestLocalizationOptions
+            //{
+            //    DefaultRequestCulture = new RequestCulture("pt-PT"),
+            //    SupportedCultures = supportedCultures,
+            //    SupportedUICultures = supportedCultures
+            //});
+
+            IList<CultureInfo> sc = new List<CultureInfo>
+            {
+                new CultureInfo("pt-PT")
+            };
+
+            var lo = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("pt-PT"),
+                SupportedCultures = sc,
+                SupportedUICultures = sc
+            };
+            var cp = lo.RequestCultureProviders.OfType<CookieRequestCultureProvider>().First();
+            cp.CookieName = "UserCulture"; // Or whatever name that you like
+
+            app.UseRequestLocalization(lo);
+
+            _ = app.UseHttpsRedirection();
             _ = app.UseAuthentication();
 
             _ = app.UseMvc();
 
             _ = app.UseCookiePolicy();
 
-            InitialUserData.Initialize(context, userManager, roleManager).Wait();
+            //InitialUserData.Initialize(context, userManager, roleManager).Wait();
         }
     }
 }

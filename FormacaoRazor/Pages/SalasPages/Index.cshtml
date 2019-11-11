@@ -1,0 +1,126 @@
+﻿@page
+@model FormacaoRazor.Pages.SalasPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm12">
+        <div class="card">
+            <div class="card-header">
+                @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                {
+                    @*<a class="btn btn-app" asp-page="Create">
+                            <i class="fas fa-plus-square"></i> Novo
+                        </a>*@
+                    <button type="button" class="btn btn-app" data-toggle="ajax-modal" data-url="@Url.Page(pageName: "Index", pageHandler: "AddModalPartial")">
+                        <i class="fas fa-plus-square"></i> Novo
+                    </button>
+                }
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Fechar">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remover">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sala[0].SalaNome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sala[0].Capacidade)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sala[0].Uh)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Sala)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalaNome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Capacidade)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Uh.IATA)
+                            </td>
+                            <td>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Administrativo"))
+                                {
+                                    <form asp-page-handler="delete" asp-route-id="@item.SalaID" id="deleteForm" method="post" class="form-inline">
+                                        <button type="button" class="btn btn-link" data-toggle="ajax-modal" data-url="@Url.Page(
+                                                pageName: "Index", pageHandler: "EditModalPartial", values: new { id = item.SalaID })">
+                                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i>
+                                        </button>&nbsp;|&nbsp;
+                                        <a asp-page="./Details" asp-route-id="@item.SalaID" class="px-1">
+                                            <i class="fas fa-info" data-toggle="tooltip" data-placement="top" title="Detalhe"></i>
+                                        </a>&nbsp;|&nbsp;
+                                        <button class="btn btn-link deleteBtn">
+                                            <i class="fas fa-trash text-danger" data-toggle="tooltip" data-placement="left" title="Apagar"></i>
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            $(".deleteBtn").click(function (e) {
+                //whenever our button is clicked
+                e.preventDefault();
+                // stop the default behavior(navigation)
+                let $form = $(this).closest('form');
+                //get a reference to the container form
+                Swal.fire({
+                    title: 'Tem a certeza?',
+                    text: "Não conseguirá recuperar a entrada!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ec6c62',
+                    confirmButtonText: 'Sim, apagar!',
+                    cancelButtonText: 'Cancelar!',
+                    animation: false,
+                    customClass: {
+                        popup: 'animated tada'
+                    }
+                }).then((result) => {
+                    if (result.value) {
+                        $form.submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire({
+                            title: 'Cancelado!',
+                            text: "",
+                            type: 'info',
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+
+}

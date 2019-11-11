@@ -1,4 +1,5 @@
-﻿using FormacaoRazor.Models.Formandos;
+﻿using FormacaoRazor.Areas.Identity.Models;
+using FormacaoRazor.Models.Formandos;
 using FormacaoRazor.Models.Marcacoes;
 using System;
 using System.Collections.Generic;
@@ -37,20 +38,11 @@ namespace FormacaoRazor.Models.Common
         public string LastUpdatedBy { get; set; }
 
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>")]
         public ICollection<Colaborador> Colaboradores { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>")]
         public ICollection<Sala> Salas { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>")]
         public ICollection<Formador> Formadores { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>")]
         public ICollection<Marcacao> Marcacoes { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>")]
-        public ICollection<Departamento> Departamentos { get; set; }
+        public ICollection<UserUh> UserUhs { get; set; }
 
     }
 }

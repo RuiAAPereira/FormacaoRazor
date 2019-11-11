@@ -24,6 +24,16 @@ namespace FormacaoRazor.Extensions.Alerts
             return Alert(result, "danger", title, body);
         }
 
+        public static IActionResult WithError(this IActionResult result, string title, string body)
+        {
+            return Alert(result, "error", title, body);
+        }
+
+        public static IActionResult WithQuestion(this IActionResult result, string title, string body)
+        {
+            return Alert(result, "question", title, body);
+        }
+
         private static IActionResult Alert(IActionResult result, string type, string title, string body)
         {
             return new AlertDecoratorResult(result, type, title, body);
